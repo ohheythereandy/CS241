@@ -23,9 +23,6 @@ public class UI {
         int menuChoice = displayOptions();
         optionLoop(menuChoice);
 
-
-
-
     }
 
     private int displayOptions(){
@@ -45,9 +42,30 @@ public class UI {
 
     private void optionLoop(int menuChoice){
 
-        if(menuChoice ==1){
-            engine.inputNumbers
+
+        if (menuChoice == 1) {
+            engine.inputNumbers();
         }
+        else if (menuChoice == 2) {
+            engine.recursionCount(1000);
+            menuScreen();
+        }
+        else if (menuChoice == 3) {
+            engine.regularCount(1000);
+            menuScreen();
+
+        }
+        else if(menuChoice==4){
+
+        }
+        else if(menuChoice==5){
+
+        }
+        else if(menuChoice==6){
+            System.out.print("See you later!");
+            System.exit(0);
+        }
+
     }
 
 
