@@ -30,8 +30,4 @@ public interface SearchTreeInterface<T extends Comparable<? super T>> {
      null if no such object exists */
     public T remove(T entry);
 
-    /** Creates an iterator that traverses all entries in this tree.
-     @return an iterator that provides sequential and ordered access
-     to the entries in the tree */
-    public Iterator<T> getInorderIterator();
 }
