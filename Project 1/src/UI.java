@@ -1,5 +1,6 @@
 /**
  * Created by Andy on 4/26/17.
+ * This class is responsible for taking in input from the user.
  */
 import java.util.Scanner;
 public class UI {
@@ -7,11 +8,18 @@ public class UI {
     Scanner keyboard;
     BinarySearchTree<Integer> bst;
 
+    /**
+     * Class constructor
+     * @param bst is the BST reference being passed
+     */
     public UI(BinarySearchTree bst) {
         keyboard = new Scanner(System.in);
         this.bst = bst;
     }
 
+    /**
+     * Prints welcome message and creates initial tree. Only called during start of program
+     */
     public void welcomeMessage() {
         System.out.println("Welcome to the Binary Search" +
                 "Tree project!");
@@ -21,11 +29,17 @@ public class UI {
 
     }
 
+    /**
+     * Method that creates initial tree
+     */
     private void initialTree() {
         System.out.println("Please enter the initial sequence of values: ");
+        //take input as string
         String values = keyboard.nextLine();
+        //creates string array from values string, split by space
         String[] valueArr = values.split("\\s+");
 
+        //loop adds entries from individual array entries parsed as Integers
         for (int i = 0; i < valueArr.length; i++) {
             bst.add(Integer.parseInt(valueArr[i]));
         }
@@ -38,6 +52,10 @@ public class UI {
         System.out.println();
     }
 
+    /**
+     * Main interaction with BST done through this method. Loops until user decides to
+     * quit.
+     */
     public void promptInput() {
         String input = "";
         while (!input.equals("E")) {
