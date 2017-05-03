@@ -43,11 +43,13 @@ public class UI {
         for (int i = 0; i < valueArr.length; i++) {
             bst.add(Integer.parseInt(valueArr[i]));
         }
-
+        System.out.print("PreOrder:");
         bst.printPreOrder(bst.getRootNode());
         System.out.println();
+        System.out.print("InOrder:");
         bst.printInOrder(bst.getRootNode());
         System.out.println();
+        System.out.print("PostOrder:");
         bst.printPostOrder(bst.getRootNode());
         System.out.println();
     }

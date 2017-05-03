@@ -71,6 +71,12 @@ public class BinarySearchTree<T extends Comparable
         return result;
     }
 
+    /**
+     * Private method used by public method add. If entry matches entry that exists already, replaces it
+     * @param rootNode is root node of given tree
+     * @param newEntry is entry to be added
+     * @return null if newEntry was not in tree, or existing entry that was replaced
+     */
     private T addEntry(BinaryNodeInterface<T> rootNode,T newEntry){
         assert rootNode != null;
         T result = null;
@@ -210,15 +216,20 @@ public class BinarySearchTree<T extends Comparable
     public void findSuccessor(BinaryNodeInterface<T> root ,T anEntry) {
         BinaryNodeInterface<T> anEntryNode = findEntry(root, anEntry);
         BinaryNodeInterface<T> succ = new BinaryNode<>(null);
+        //check if node exists
         if (anEntryNode.getData() != null) {
+            //if node has right child, get minimum value
             if (anEntryNode.hasRightChild()) {
                 minValue(anEntryNode.getRightChild());
                 return;
             }
+            //work way down tree
             while (root.getData() != null) {
+                //if entry is less than root, go left
                 if (anEntryNode.getData().compareTo(root.getData()) < 0) {
                     succ = root;
                     root = root.getLeftChild();
+
                 } else if (anEntryNode.getData().compareTo(root.getData()) > 0) {
                     root = root.getRightChild();
                 } else
@@ -237,7 +248,8 @@ public class BinarySearchTree<T extends Comparable
         BinaryNodeInterface<T> pred = new BinaryNode<>(null);
         if(anEntryNode.getData()!= null){
             if(anEntryNode.hasLeftChild()){
-                maxValue(anEntryNode.getRightChild());
+                maxValue(anEntryNode.getLeftChild());
+                return;
             }
             while(root.getData() != null){
                 if(anEntryNode.getData().compareTo(root.getData()) > 0){
@@ -255,6 +267,10 @@ public class BinarySearchTree<T extends Comparable
         }
     }
 
+    /**
+     * Find minimum value from given Node, used to find predecessor
+     * @param node is given node to search from
+     */
     private void maxValue(BinaryNodeInterface<T> node){
         BinaryNodeInterface<T> current = node;
 
@@ -264,6 +280,10 @@ public class BinarySearchTree<T extends Comparable
         System.out.println(current.getData());
     }
 
+    /**
+     * Find minimum value from given Node, used to find Successor
+     * @param node is given node to search from
+     */
     private void minValue(BinaryNodeInterface<T> node){
         BinaryNodeInterface<T> current = node;
 
