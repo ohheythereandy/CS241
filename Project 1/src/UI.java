@@ -93,7 +93,7 @@ public class UI {
     }
 
     public void displayPrompt() {
-        System.out.println("I   Insert a value");
+        System.out.println("\nI   Insert a value");
         System.out.println("D   Delete a value");
         System.out.println("P   Find Predecessor");
         System.out.println("S   Find Successor");
