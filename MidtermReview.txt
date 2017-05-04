@@ -1,0 +1,65 @@
+Data Types - A group of concrete types and operations implemented in a specific
+            programming language
+Data Structure - An implementation of data types and logic that aggregates data
+            in a specific way
+              -an organization of a collection of data
+
+Linear Data Structure
+  -data is accessed and stored in a linear sequence
+  -data access restriction is possible
+  - ex. Stacks and Queues
+
+Non Linear Data
+  -Data may not be accessed or arranged sequentially
+  -ex. trees, graphs
+
+Algorithms  - a set of instructions for solving a problem in a specific way
+
+Analyzing an Algorithm
+  Problem Size  - a measure of the size of a problem being solved by an algorithm
+  Growth Rate   - a function that describes runtime complexity of an algorithm as it grows
+
+  Runtime(example):
+  Constant(array access)  < log n(binary search) < n(iteration over array)
+  < n log n(merge sort) < n^2(nested loops) < polynomials < b^n(fibonacci) < n!(nest multiplication)
+
+Recursion - technique that can be used to break a larger problem or task into
+            identical yet smaller subtasks
+            - a recursive method is a method that calls itself.
+            - a base case is the termination case for ending a recursive function
+
+        no base case = infinite recursion = infinite execution
+
+Tree - a widely used data structure that emulates a hierarchical tree structure
+
+  Root - a special node without a parent. There is only one in a tree
+  Internal node - node with at least one child
+  leaf node- node with no children
+
+Tree traversal is the process of visiting all nodes in a tree in a certain order
+  - root is always starting point in any traversal
+  - traversal algorithms generally use recursion
+
+  1) Pre-Order:
+      - process node
+      - process nodes in left subtree with recursive call
+      - process nodes in right subtree with recursive call
+
+  2) In-Order:
+      - process nodes in left subtree with recursive call
+      - process node
+      - process nodes in right subtree with recursive call
+
+  3) Post-Order:
+      - process nodes in left subtree with recursive call
+      - process nodes in right subtree with recursive call
+      - process node
+  4) Level-Order:
+      - process nodes level by level
+
+Rules of a BST
+  - every node of a binary tree holds a key value
+  - all key values in left subtree of a node are less than or equal to key values
+  of that node
+  - all key values in right subtree of a node are greater than key value of that
+  node
