@@ -7,10 +7,6 @@ public class BinaryNode<T> implements BinaryNodeInterface<T> {
     private BinaryNode<T> left;
     private BinaryNode<T> right;
 
-    public BinaryNode(){
-        this(null); //call next constructor
-    }
-
     public BinaryNode(T dataPortion){
         this(dataPortion, null, null); // call next constructor
     }

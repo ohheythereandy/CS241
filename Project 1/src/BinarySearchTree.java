@@ -1,5 +1,3 @@
-import java.util.Iterator;
-
 /**
  * Created by Andy on 4/26/17.
  */
@@ -9,12 +7,8 @@ public class BinarySearchTree<T extends Comparable
     private BinaryNodeInterface<T> root;
 
     public BinarySearchTree(){
-        this(null);
+        root=null;
     }
-
-    public BinarySearchTree(T rootEntry){
-        setRootNode(new BinaryNode<T>(rootEntry));
-    }//end constructor
 
     protected void setRootNode(BinaryNodeInterface<T> rootNode){
         root = rootNode;
@@ -36,12 +30,12 @@ public class BinarySearchTree<T extends Comparable
      @return either the object that was found in the tree or
      null if no such object exists */
     public T getEntry(T entry){
-        return findEntry(getRootNode(), entry);
+        return findEntry(getRootNode(), entry).getData();
     }
 
 
-    private T findEntry(BinaryNodeInterface<T> rootNode, T anEntry){
-        T result = null;
+    private BinaryNodeInterface<T> findEntry(BinaryNodeInterface<T> rootNode, T anEntry){
+        BinaryNodeInterface<T> result = new BinaryNode<>(null);
 
         //if rootNode exists(Valid Tree)
         if(rootNode != null)
@@ -49,7 +43,7 @@ public class BinarySearchTree<T extends Comparable
             T rootEntry = rootNode.getData();
             //if given Entry equals root, returns
             if(anEntry.equals(rootEntry))
-                result = rootEntry;
+                result = rootNode;
             //if given Entry is less than root, go left
             else if(anEntry.compareTo(rootEntry)<0)
                 result = findEntry(rootNode.getLeftChild(), anEntry);
@@ -71,12 +65,18 @@ public class BinarySearchTree<T extends Comparable
         T result = null;
 
         if(isEmpty())
-            setRootNode(new BinaryNode<T>(newEntry));
+            setRootNode(new BinaryNode<>(newEntry));
         else
             result = addEntry(getRootNode(), newEntry);
         return result;
     }
 
+    /**
+     * Private method used by public method add. If entry matches entry that exists already, replaces it
+     * @param rootNode is root node of given tree
+     * @param newEntry is entry to be added
+     * @return null if newEntry was not in tree, or existing entry that was replaced
+     */
     private T addEntry(BinaryNodeInterface<T> rootNode,T newEntry){
         assert rootNode != null;
         T result = null;
@@ -191,14 +191,15 @@ public class BinarySearchTree<T extends Comparable
     public void printInOrder(BinaryNodeInterface<T> root){
         if(root!= null){
             printInOrder(root.getLeftChild());
-            System.out.println(root.getData());
+            System.out.print(root.getData() + " ");
             printInOrder(root.getRightChild());
+
         }
     }
 
     public void printPreOrder(BinaryNodeInterface<T> root){
         if(root!=null) {
-            System.out.println(root.getData());
+            System.out.print(root.getData() + " ");
             printPreOrder(root.getLeftChild());
             printPreOrder(root.getRightChild());
         }
@@ -208,8 +209,88 @@ public class BinarySearchTree<T extends Comparable
         if(root!=null){
             printPostOrder(root.getLeftChild());
             printPostOrder(root.getRightChild());
-            System.out.println(root.getData());
+            System.out.print(root.getData() + " ");
         }
+    }
+
+    public void findSuccessor(BinaryNodeInterface<T> root ,T anEntry) {
+        BinaryNodeInterface<T> anEntryNode = findEntry(root, anEntry);
+        BinaryNodeInterface<T> succ = new BinaryNode<>(null);
+        //check if node exists
+        if (anEntryNode.getData() != null) {
+            //if node has right child, get minimum value
+            if (anEntryNode.hasRightChild()) {
+                minValue(anEntryNode.getRightChild());
+                return;
+            }
+            //work way down tree
+            while (root.getData() != null) {
+                //if entry is less than root, go left
+                if (anEntryNode.getData().compareTo(root.getData()) < 0) {
+                    succ = root;
+                    root = root.getLeftChild();
+
+                } else if (anEntryNode.getData().compareTo(root.getData()) > 0) {
+                    root = root.getRightChild();
+                } else
+                    break;
+            }
+            System.out.println(succ.getData());
+        }
+        else{
+                System.out.println("Sorry, that node doesn't exist!");
+            }
+
+    }
+
+    public void findPredecessor(BinaryNodeInterface<T> root, T anEntry){
+        BinaryNodeInterface<T> anEntryNode = findEntry(root, anEntry);
+        BinaryNodeInterface<T> pred = new BinaryNode<>(null);
+        if(anEntryNode.getData()!= null){
+            if(anEntryNode.hasLeftChild()){
+                maxValue(anEntryNode.getLeftChild());
+                return;
+            }
+            while(root.getData() != null){
+                if(anEntryNode.getData().compareTo(root.getData()) > 0){
+                    pred = root;
+                    root = root.getRightChild();
+                }
+                else if( anEntryNode.getData().compareTo(root.getData()) < 0){
+                    root = root.getLeftChild();
+                }
+            }
+            System.out.println(pred.getData());
+        }
+        else{
+            System.out.println("Sorry, that node doesn't exist");
+        }
+    }
+
+    /**
+     * Find minimum value from given Node, used to find predecessor
+     * @param node is given node to search from
+     */
+    private void maxValue(BinaryNodeInterface<T> node){
+        BinaryNodeInterface<T> current = node;
+
+        while(current.hasRightChild()){
+            current = current.getRightChild();
+        }
+        System.out.println(current.getData());
+    }
+
+    /**
+     * Find minimum value from given Node, used to find Successor
+     * @param node is given node to search from
+     */
+    private void minValue(BinaryNodeInterface<T> node){
+        BinaryNodeInterface<T> current = node;
+
+        while(current.hasLeftChild()){
+            current = current.getLeftChild();
+        }
+        System.out.println(current.getData());
     }
 
     public class ReturnObject {
