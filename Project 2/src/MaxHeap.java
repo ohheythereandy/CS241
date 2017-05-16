@@ -1,6 +1,7 @@
 /**
  * Created by Andy on 5/15/17.
  */
+import java.util.Arrays;
 public class MaxHeap implements MaxHeapInterface {
 
     private int[] heap;
@@ -24,6 +25,7 @@ public class MaxHeap implements MaxHeapInterface {
      */
     public void add(int newEntry){
         lastIndex++;
+        ensureCapacity();
         int newIndex = lastIndex;
         int parentIndex = newIndex / 2;
         //start index searching for appropriate location for newEntry
@@ -36,21 +38,60 @@ public class MaxHeap implements MaxHeapInterface {
         heap[newIndex] = newEntry;
     }
 
-    public int removeMax(){
-
+    private void ensureCapacity(){
+        if(lastIndex >= heap.length)
+            heap = Arrays.copyOf(heap, 2* heap.length);
     }
-    public int getMax(){
 
+    public int removeMax(){
+        int root = 0;
+
+        if(!isEmpty()){
+            root = heap[1];
+            heap[1] = heap[lastIndex];
+            lastIndex--;
+            reHeap(1);
+        }
+        return root;
+    }
+
+    private void reHeap(int rootIndex){
+        boolean finished = false;
+        int openSlot = heap[rootIndex];
+        int leftChildIndex = 2* rootIndex;
+
+        while(!finished && (leftChildIndex <= lastIndex)){
+            int largerIndex = leftChildIndex;
+            int rightChildIndex = leftChildIndex+1;
+            if((rightChildIndex <= lastIndex) &&
+                    (heap[rightChildIndex]>heap[largerIndex])){
+                largerIndex = rightChildIndex;
+            }
+            if(openSlot < largerIndex){
+                heap[rootIndex] = heap[largerIndex];
+                rootIndex = largerIndex;
+                leftChildIndex = 2 * rootIndex;
+            }
+            else
+                finished = true;
+        }//end while
+        heap[rootIndex] = openSlot;
+    }
+
+    public int getMax(){
+        return heap[1];
     }
     public boolean isEmpty(){
-
+        return lastIndex==0;
     }
     public int getSize(){
-
+        return lastIndex;
     }
     public void clear(){
         for(;lastIndex > -1; lastIndex--){
             heap[lastIndex] = 0;
         }
     }
+
+
 }
