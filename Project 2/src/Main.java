@@ -4,7 +4,7 @@
 public class Main {
 
     public static void main(String[] args){
-        UserInterface UI = new UserInterface(new MaxHeap());
+        UserInterface UI = new UserInterface();
         UI.WelcomeMessage();
         UI.promptInput();
         UI.exitMessage();

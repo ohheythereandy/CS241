@@ -7,12 +7,25 @@ public class MaxHeap implements MaxHeapInterface {
     private int[] heap;
     private int lastIndex;
     private static final int DEFAULT_CAPACITY = 100;
+    private int swapCounter;
 
     public MaxHeap(){
         this(DEFAULT_CAPACITY);
     }
 
+    public MaxHeap(int[] entries){
+        heap = new int[entries.length + 1];
+        lastIndex = entries.length;
 
+        //copy array to heap data field
+        for(int index = 0; index < entries.length; index++){
+            heap[index+1] = entries[index];
+        }
+        //create heap
+        for(int rootIndex = lastIndex / 2; rootIndex > 0; rootIndex--){
+            reHeap(rootIndex);
+        }
+    }
     /**
      * Default constructor creates heap with {@code capacity} +1 capacity
      * @param capacity is the size desired of heap
@@ -20,6 +33,7 @@ public class MaxHeap implements MaxHeapInterface {
     public MaxHeap(int capacity){
         heap = new int[capacity+1];
         lastIndex = 0;
+        swapCounter=0;
     } //end MaxHeap
 
     /**
@@ -38,6 +52,7 @@ public class MaxHeap implements MaxHeapInterface {
             heap[newIndex] = heap[parentIndex];
             newIndex= parentIndex;
             parentIndex = newIndex/2;
+            swapCounter++;
         }//end while
         //assign destination to newEntry
         heap[newIndex] = newEntry;
@@ -98,6 +113,7 @@ public class MaxHeap implements MaxHeapInterface {
                 heap[rootIndex] = heap[largerChildIndex];
                 rootIndex = largerChildIndex;
                 leftChildIndex = 2 * rootIndex;
+                swapCounter++;
             }
             //calculated indexes surpass lastIndex(are not valid)
             else
@@ -130,6 +146,10 @@ public class MaxHeap implements MaxHeapInterface {
         return lastIndex;
     }
 
+    public int getSwaps(){
+        return swapCounter;
+    }
+
     /**
      * Method clears heap by setting all contents to 0
      */
@@ -139,5 +159,11 @@ public class MaxHeap implements MaxHeapInterface {
         }
     }
 
+    public void printHeap(int entriesToPrint){
+        for(int index = 1; index <= entriesToPrint ; index++ ){
+            System.out.print(heap[index] + ",");
+        }
+        System.out.print("...");
+    }
 
 }

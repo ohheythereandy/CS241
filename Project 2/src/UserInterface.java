@@ -6,11 +6,11 @@ import java.util.Scanner;
 public class UserInterface {
 
     Scanner keyboard;
-    MaxHeap integerHeap;
+    HeapBuilder build;
 
-    public UserInterface(MaxHeap integerHeap){
+    public UserInterface(){
         keyboard = new Scanner(System.in);
-        this.integerHeap = integerHeap;
+        build = new HeapBuilder();
     }
 
     public void WelcomeMessage(){
@@ -27,7 +27,8 @@ public class UserInterface {
                     //to-do
                     break;
                 case 2:
-                    //to-do
+                    build.sequentialBuild();
+                    build.optimalBuild();
                     break;
                 case 3:
                     exitMessage();
@@ -49,7 +50,7 @@ public class UserInterface {
      * Private method used in conjunction with promptInput() to display options for mainMenu
      */
     private void displayPrompt(){
-        System.out.println("Please select how to test the program: ");
+        System.out.println("\nPlease select how to test the program: ");
         System.out.println("1: 20 sets of randomly generated integers.");
         System.out.println("2: Fixed integer values 1-100.");
         System.out.println("3: I don't want to test your program.");
