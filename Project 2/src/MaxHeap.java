@@ -13,9 +13,14 @@ public class MaxHeap implements MaxHeapInterface {
         this(DEFAULT_CAPACITY);
     }
 
+    /**
+     * Constructor creates a heap using the optimized method of utilizing reHeap()
+     * @param entries is the array reference to be reheaped.
+     */
     public MaxHeap(int[] entries){
         heap = new int[entries.length + 1];
         lastIndex = entries.length;
+        swapCounter =0;
 
         //copy array to heap data field
         for(int index = 0; index < entries.length; index++){

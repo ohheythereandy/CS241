@@ -1,5 +1,6 @@
 /**
  * Created by HiThereAndy on 5/12/2017.
+ * Main class is responsible for starting the program
  */
 public class Main {
 

@@ -1,5 +1,6 @@
 /**
  * Created by HiThereAndy on 5/12/2017.
+ * This class is responsible for handling all interactions with the user .
  */
 import java.util.Scanner;
 
@@ -24,11 +25,13 @@ public class UserInterface {
             input = keyboard.nextInt();
             switch(input){
                 case 1:
-                    //to-do
+                    build.buildRandomSets(20);
                     break;
                 case 2:
                     build.sequentialBuild();
+                    build.printSequential();
                     build.optimalBuild();
+                    build.printOptimal(build.integerHeap);
                     break;
                 case 3:
                     exitMessage();
