@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7a2aab02-c732-4a43-a71e-b64fc89e2f7f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -536,12 +535,20 @@
       <option name="presentableId" value="Default" />
       <updated>1495403866634</updated>
       <workItem from="1495403872463" duration="215000" />
-      <workItem from="1495512239989" duration="2339000" />
+      <workItem from="1495512239989" duration="2397000" />
     </task>
+    <task id="LOCAL-00001" summary="Figuring out how to read from URL">
+      <created>1495514899179</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1495514899179</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2554000" />
+    <option name="totallyTimeSpent" value="2612000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="1294" height="1407" extended-state="0" />
@@ -583,6 +590,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Figuring out how to read from URL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Figuring out how to read from URL" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
