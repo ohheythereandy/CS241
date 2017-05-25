@@ -3,12 +3,13 @@
  */
 public class CityNode {
 
-    public int number, elevation;
+    public int label;
+    public int elevation;
     public long population;
     public String cityCode, cityName;
 
     public CityNode(){
-        number = 0;
+        label = 0;
         population = 0;
         elevation = 0;
         cityCode = null;
@@ -16,7 +17,7 @@ public class CityNode {
     }
 
     public CityNode(int number, String cityCode, String cityName, long population, int elevation){
-        number = this.number;
+        label = number;
         population = this.population;
         elevation = this.elevation;
         cityCode = this.cityCode;

@@ -1,13 +1,13 @@
 /**
  * Created by Andy on 5/23/17.
  */
-public interface GraphInterface<T> {
+public interface GraphInterface {
 
     /** Adds a given vertex to the graph.
      @param vertexLabel an object that labels the new vertex and is
      distinct from the labels of current vertices
      @return true if the vertex is added, or false if not */
-    public boolean addVertex(T vertexLabel);
+    public boolean addVertex(int vertexLabel);
 
     /** Adds a weighted edge between two given distinct vertices that
      are currently in the graph. The desired edge must not already
@@ -19,13 +19,13 @@ public interface GraphInterface<T> {
      @param edgeWeight the real value of the edge's weight
      @return true if the edge is added, or false if not */
 
-    public boolean addEdge(T begin, T end, int edgeWeight);
+    public boolean addEdge(int begin, int end, int edgeWeight);
 
     /** Sees whether an edge exists between two given vertices.
      @param begin an object that labels the origin vertex of the edge
      @param end an object that labels the end vertex of the edge
      @return true if an edge exists */
-    public boolean hasEdge(T begin, T end);
+    public boolean hasEdge(int begin, int end);
 
     /** Sees whether the graph is empty.
      @return true if the graph is empty */

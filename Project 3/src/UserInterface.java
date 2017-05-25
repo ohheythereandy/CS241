@@ -4,18 +4,18 @@
 import java.util.Scanner;
 public class UserInterface {
 
-    GraphInterface<CityNode> matrix;
+    GraphInterface matrix;
     Scanner keyboard;
     URLReader read;
 
-    public UserInterface(GraphInterface<CityNode> graph) throws Exception{
+    public UserInterface(GraphInterface graph) throws Exception{
         matrix = graph;
         keyboard = new Scanner(System.in);
         read = new URLReader(matrix);
     }
 
     public void startMenu(){
-        System.out.println("Hello!");
+        System.out.println("Hello!" + matrix.isEmpty());
     }
 
 }
