@@ -15,11 +15,12 @@ public class MapGraph implements GraphInterface {
 
     public MapGraph(){
 
-        edgeMatrix = new int[25][25];
+        edgeMatrix = new int[20][20];
         cityList = new ArrayList<>();
         cityCounter =0;
         edgeCounter = 0;
     }
+
 
     /** Adds a given vertex to the graph.
      @param vertexLabel an object that labels the new vertex and is
@@ -49,8 +50,14 @@ public class MapGraph implements GraphInterface {
 
     public boolean addEdge(int begin, int end, int edgeWeight){
 
+        boolean added = false;
 
-        return true;
+        if(edgeMatrix[begin -1][ end -1] == 0) {
+            edgeMatrix[begin - 1][end - 1] = edgeWeight;
+            added = true;
+            edgeCounter++;
+        }
+        return added;
     }
 
     /** Sees whether an edge exists between two given vertices.
@@ -60,7 +67,7 @@ public class MapGraph implements GraphInterface {
     public boolean hasEdge(int begin, int end){
 
 
-        return true;
+        return (edgeMatrix[begin-1][end-1] != 0);
     }
 
     /** Sees whether the graph is empty.
