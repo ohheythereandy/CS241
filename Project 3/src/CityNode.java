@@ -9,6 +9,10 @@ public class CityNode implements VertexInterface {
     public String code, name;
 
 
+    public CityNode(){
+
+    }
+
     public CityNode(int number, String cityCode, String cityName, long population, int elevation){
        label = number;
         peopleSize = population;

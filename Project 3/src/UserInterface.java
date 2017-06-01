@@ -33,14 +33,16 @@ public class UserInterface {
                     queryCityInformation(keyboard.next());
                     break;
                 case "D":
+                    System.out.print("City Codes: ");
+                    map.getMinDistance(keyboard.next(), keyboard.next());
                     break;
                 case "I":
                     System.out.println("From City, To City, and Distance?: ");
-                    insertRoad(keyboard.next(), keyboard.next(), keyboard.nextInt());
+                    map.addEdge(keyboard.next(), keyboard.next(), keyboard.nextInt());
                     break;
                 case "R":
                     System.out.println("From City, To City?: ");
-                    deleteRoad(keyboard.next(), keyboard.next());
+                    map.deleteEdge(keyboard.next(), keyboard.next());
                     break;
                 case "H":
                     displayPrompt();
@@ -56,6 +58,7 @@ public class UserInterface {
         }
     }
 
+
     /**
      * Method is in charge of printing commands user can input to interact with program
      */
@@ -69,10 +72,22 @@ public class UserInterface {
         System.out.println("Command?");
     }
 
+
+    /**
+     * This method interacts with the delete edge method in the MapGraph object
+     * @param source is source city code associated with source city of road
+     * @param destination is destination city code associated with destination of road
+     */
     private void deleteRoad(String source, String destination){
         map.deleteEdge(source, destination);
     }
 
+    /**
+     * This method interacts with the add road method in the MapGraph object
+     * @param source is city code of source road
+     * @param destination is city code of destination
+     * @param distance
+     */
     public void insertRoad(String source, String destination, int distance){
 
         map.addEdge(source, destination, distance);
