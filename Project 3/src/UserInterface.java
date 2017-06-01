@@ -4,19 +4,22 @@
 import java.util.Scanner;
 public class UserInterface {
 
-    GraphInterface matrix;
+    MapGraph map;
     Scanner keyboard;
     URLReader read;
 
-    public UserInterface(GraphInterface graph) throws Exception{
-        matrix = graph;
+    public UserInterface(MapGraph graph) throws Exception{
+        map = graph;
         keyboard = new Scanner(System.in);
-        read = new URLReader(matrix);
+        read = new URLReader(map);
     }
 
     public void startMenu(){
-        System.out.println("Hello! The number of current cities : " + matrix.getNumberOfVertices());
-        System.out.println("Current number of roads: " + matrix.getNumberOfEdges());
+//        System.out.println("Hello! The number of current cities : " + matrix.getNumberOfVertices());
+//        System.out.println("Current number of roads: " + matrix.getNumberOfEdges());
+        System.out.println("Welcome to Project 3: Graph Implementation Program!");
+        System.out.print("********************************************************");
+
     }
 
     public void mainMenu(){
@@ -26,6 +29,8 @@ public class UserInterface {
             input = keyboard.next().toUpperCase();
             switch (input){
                 case "Q":
+                    System.out.println("City Code: ");
+                    queryCityInformation(keyboard.next());
                     break;
                 case "D":
                     break;
@@ -47,6 +52,9 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Method is in charge of printing commands user can input to interact with program
+     */
     private void displayPrompt(){
         System.out.println("\nQ    Query city information by entering city code.");
         System.out.println("D       Find a minimum distance between two cities.");
@@ -55,5 +63,11 @@ public class UserInterface {
         System.out.println("H       Print this message.");
         System.out.println("E       Exit this program.");
         System.out.println("Command?");
+    }
+
+    public void queryCityInformation(String cityCode){
+
+        map.getCityInfo(cityCode);
+
     }
 }

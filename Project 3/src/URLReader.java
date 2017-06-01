@@ -36,7 +36,7 @@ public class URLReader {
             int cityNumber = scan.nextInt();
             String cityCode = scan.next();
             String cityName = scan.next();
-            int population;
+            long population;
             if(scan.hasNextInt()){
                 population = scan.nextInt();
             }
@@ -49,10 +49,9 @@ public class URLReader {
 //              System.out.println(cityNumber +
 //                    " "+ cityCode + " " + cityName + " " + population + " " + elevation );
             CityNode node = new CityNode(cityNumber, cityCode, cityName, population, elevation);
-            graph.addVertex(node.label);
+            graph.addVertex(node);
 
         }
-
 
 
         //close stream

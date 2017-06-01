@@ -7,7 +7,7 @@ public interface GraphInterface {
      @param vertexLabel an object that labels the new vertex and is
      distinct from the labels of current vertices
      @return true if the vertex is added, or false if not */
-    public boolean addVertex(int vertexLabel);
+    public boolean addVertex(CityNode vertexLabel);
 
     /** Adds a weighted edge between two given distinct vertices that
      are currently in the graph. The desired edge must not already

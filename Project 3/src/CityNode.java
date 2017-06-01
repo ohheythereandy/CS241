@@ -1,33 +1,32 @@
 /**
  * Created by Andy on 5/24/17.
  */
-public class CityNode<T> implements VertexInterface<T> {
+public class CityNode implements VertexInterface {
 
     public int label;
-    public int elevation;
-    public long population;
-    public String cityCode, cityName;
+    public int elevationNum;
+    public long peopleSize;
+    public String code, name;
 
-    public CityNode(){
-        label = 0;
-        population = 0;
-        elevation = 0;
-        cityCode = null;
-        cityName = null;
-    }
 
     public CityNode(int number, String cityCode, String cityName, long population, int elevation){
-        label = number;
-        population = this.population;
-        elevation = this.elevation;
-        cityCode = this.cityCode;
-        cityName = this.cityName;
+       label = number;
+        peopleSize = population;
+        elevationNum = elevation;
+        code = cityCode;
+        name = cityName;
     }
+
+
 
     /** Gets the vertex's label.
      @return the object that labels the vertex */
-    public T getLabel(){
+    public int getLabel(){
+        return label;
+    }
 
+    public String getCityCode(){
+        return code;
     }
     /** Marks the vertex as visited. */
     public void visit(){
@@ -40,7 +39,7 @@ public class CityNode<T> implements VertexInterface<T> {
     /** Sees whether the vertex is marked as visited.
      @return true if the vertex is visited */
     public boolean isVisited(){
-
+        return true;
     }
     /** Connects this vertex and a given vertex with a weighted edge.
      The two vertices cannot be the same, and must not already
@@ -49,9 +48,9 @@ public class CityNode<T> implements VertexInterface<T> {
      @param endVertex a vertex in the graph that ends the edge
      @param edgeWeight a real-valued edge weight, if any
      @return true if the edge is added, or false if not */
-    public boolean connect(VertexInterface<T> endVertex,
+    public boolean connect(VertexInterface endVertex,
                            int edgeWeight){
-
+        return true;
     }
     /** Connects this vertex and a given vertex with an unweighted
      edge. The two vertices cannot be the same, and must not
@@ -59,8 +58,8 @@ public class CityNode<T> implements VertexInterface<T> {
      the edge points toward the given vertex.
      @param endVertex a vertex in the graph that ends the edge
      @return true if the edge is added, or false if not */
-    public boolean connect(VertexInterface<T> endVertex){
-
+    public boolean connect(VertexInterface endVertex){
+        return true;
     }
 
     /** Records the cost of a path to this vertex.
@@ -71,21 +70,33 @@ public class CityNode<T> implements VertexInterface<T> {
     /** Gets the recorded cost of the path to this vertex.
      @return the cost of the path */
     public double getCost(){
+        return 0.0;
+    }
 
+    public String toString(){
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(label + " ");
+        sb.append(code + " ");
+        sb.append(name + " ");
+        sb.append(peopleSize + " ");
+        sb.append(elevationNum + " ");
+
+        return sb.toString();
     }
 
     protected class Edge{
 
-        public VertexInterface<T> vertex;
+        public VertexInterface vertex;
         private int weight;
 
-        protected Edge(VertexInterface<T> endVertex, int edgeWeight)
+        protected Edge(VertexInterface endVertex, int edgeWeight)
         {
             vertex = endVertex;
             weight = edgeWeight;
         } // end constructor
 
-        protected VertexInterface<T> getEndVertex()
+        protected VertexInterface getEndVertex()
         {
             return vertex;
         } // end getEndVertex

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class MapGraph implements GraphInterface {
 
     int[][] edgeMatrix;
-    ArrayList<Integer> cityList;
+    ArrayList<CityNode> cityList;
     int cityCounter;
     int edgeCounter;
 
@@ -16,21 +16,21 @@ public class MapGraph implements GraphInterface {
     public MapGraph(){
 
         edgeMatrix = new int[20][20];
-        cityList = new ArrayList<>();
+        cityList = new ArrayList<>(20);
         cityCounter =0;
         edgeCounter = 0;
     }
 
 
     /** Adds a given vertex to the graph.
-     @param vertexLabel an object that labels the new vertex and is
+     @param vertex an object that labels the new vertex and is
      distinct from the labels of current vertices
      @return true if the vertex is added, or false if not */
-    public boolean addVertex(int vertexLabel){
+    public boolean addVertex(CityNode vertex){
         boolean success = false;
 
-        if(!cityList.contains(vertexLabel)) {
-            cityList.add(cityCounter, vertexLabel);
+        if(!cityList.contains(vertex)) {
+            cityList.add(vertex);
             cityCounter++;
             success = true;
         }
@@ -93,6 +93,29 @@ public class MapGraph implements GraphInterface {
 
     /** Removes all vertices and edges from the graph. */
     public void clear(){
+
+    }
+
+    public void getCityInfo(String cityCode){
+
+        CityNode current;
+        String cityInfo = "";
+        boolean found = false;
+
+        for(int index = 0; index < 20; index++){
+            current = cityList.get(index);
+
+            if(cityCode.equals(current.getCityCode())){
+                cityInfo = current.toString();
+                found = true;
+            }
+        }
+
+        if(found)
+            System.out.println(cityInfo);
+        else{
+            System.out.println("Sorry, a city with that city code doesn't exist.");
+        }
 
     }
 
