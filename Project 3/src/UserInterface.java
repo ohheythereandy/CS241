@@ -35,6 +35,8 @@ public class UserInterface {
                 case "D":
                     break;
                 case "I":
+                    System.out.println("From City, To City, and Distance?: ");
+                    insertRoad(keyboard.next(), keyboard.next(), keyboard.nextInt());
                     break;
                 case "R":
                     break;
@@ -65,6 +67,16 @@ public class UserInterface {
         System.out.println("Command?");
     }
 
+    public void insertRoad(String source, String destination, int distance){
+
+        map.addEdge(source, destination, distance);
+
+    }
+
+    /**
+     * This method is responsible for interacting with the MapGraph class to query a city's information
+     * @param cityCode is the city code inputted by the user to search for
+     */
     public void queryCityInformation(String cityCode){
 
         map.getCityInfo(cityCode);

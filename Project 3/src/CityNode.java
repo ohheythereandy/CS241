@@ -25,6 +25,9 @@ public class CityNode implements VertexInterface {
         return label;
     }
 
+    public String getName(){
+        return name;
+    }
     public String getCityCode(){
         return code;
     }

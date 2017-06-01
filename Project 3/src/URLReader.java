@@ -8,7 +8,6 @@ public class URLReader {
 
     String cityURL;
     String roadURL;
-    Scanner scan;
 
     public URLReader(GraphInterface graph) throws Exception{
         cityURL = "https://www.cpp.edu/~ftang/courses/CS241/hw/city.dat";
@@ -79,6 +78,8 @@ public class URLReader {
             // System.out.println(fromCity + " " + toCity + " " + distance);
             graph.addEdge(fromCity, toCity, distance);
         }
+
+        in.close();
     }
 
 }

@@ -96,6 +96,10 @@ public class MapGraph implements GraphInterface {
 
     }
 
+    /**
+     * Used to get city information associated with the nodes in the arraylist
+     * @param cityCode is the city code used as a flag for the search
+     */
     public void getCityInfo(String cityCode){
 
         CityNode current;
@@ -117,6 +121,61 @@ public class MapGraph implements GraphInterface {
             System.out.println("Sorry, a city with that city code doesn't exist.");
         }
 
+    }
+
+    /**
+     * This method adds edge using strings as parameters for the source and destination cities
+     * Mostly just finds the corresponding indexes for the strings, and then calls addEdge(int, int , int)
+     * @param source
+     * @param destination
+     * @param distance
+     * @return
+     */
+    public void addEdge(String source, String destination, int distance){
+
+        CityNode current;
+        int sourceIndex =0;
+        int destinationIndex =0;
+        boolean sourceFound = false;
+        boolean destinationFound = false;
+
+        for(int index = 0; index < 20; index++){
+            current = cityList.get(index);
+
+            if(source.equals(current.getCityCode())){
+                sourceIndex = current.getLabel();
+                source = current.getName();
+                sourceFound = true;
+            }
+            if(destination.equals(current.getCityCode())){
+                destinationIndex = current.getLabel();
+                destination = current.getName();
+                destinationFound = true;
+            }
+
+        }
+
+        if((!sourceFound) || (!destinationFound)) {
+            printCodeError();
+            return;
+        }
+
+        boolean result = addEdge(sourceIndex,destinationIndex, distance);
+
+        if(result){
+            System.out.println("You have inserted a road from " + source + " to "
+                    + destination + " with a distance of " + distance + ".");
+        }
+        else{
+            System.out.println("A road already exists!");
+        }
+    }
+
+    /**
+     * Method is responsible for printing error message.
+     */
+    private void printCodeError(){
+        System.out.println("One or more of the codes entered might not exist!");
     }
 
 }
