@@ -39,6 +39,8 @@ public class UserInterface {
                     insertRoad(keyboard.next(), keyboard.next(), keyboard.nextInt());
                     break;
                 case "R":
+                    System.out.println("From City, To City?: ");
+                    deleteRoad(keyboard.next(), keyboard.next());
                     break;
                 case "H":
                     displayPrompt();
@@ -65,6 +67,10 @@ public class UserInterface {
         System.out.println("H       Print this message.");
         System.out.println("E       Exit this program.");
         System.out.println("Command?");
+    }
+
+    private void deleteRoad(String source, String destination){
+        map.deleteEdge(source, destination);
     }
 
     public void insertRoad(String source, String destination, int distance){

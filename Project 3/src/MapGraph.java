@@ -97,6 +97,53 @@ public class MapGraph implements GraphInterface {
     }
 
     /**
+     * Find labels associated with city codes inputted by user. Check to see if they exist,
+     * and if a road exists at all.
+     * @param source city code associated from source of road
+     * @param destination city code associated with destination of road
+     */
+    public void deleteEdge(String source, String destination){
+
+        CityNode current;
+        int sourceLabel = 0;
+        int destinationLabel = 0;
+        boolean sourceFlag = false;
+        boolean destinationFlag = false;
+
+        for(int index = 0; index < 20; index++){
+            current = cityList.get(index);
+
+            if(source.equals(current.getCityCode())){
+                sourceLabel = current.getLabel();
+                sourceFlag = true;
+                source = current.getName();
+            }
+            if(destination.equals(current.getCityCode())){
+                destinationLabel = current.getLabel();
+                destinationFlag =true;
+                destination = current.getName();
+            }
+        }
+
+        if((!sourceFlag) || (!destinationFlag)) {
+            printCodeError();
+            return;
+        }
+
+        boolean result = hasEdge(sourceLabel, destinationLabel);
+
+        if(result){
+            edgeMatrix[sourceLabel -1][ destinationLabel-1] = 0;
+            System.out.println("Road deleted!");
+        }
+        else{
+            System.out.println("The road from " + source + " to "
+                            + destination  + " doesn't exist!");
+        }
+
+    }
+
+    /**
      * Used to get city information associated with the nodes in the arraylist
      * @param cityCode is the city code used as a flag for the search
      */
@@ -154,7 +201,6 @@ public class MapGraph implements GraphInterface {
             }
 
         }
-
         if((!sourceFound) || (!destinationFound)) {
             printCodeError();
             return;
