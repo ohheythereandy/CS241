@@ -283,22 +283,13 @@ public class MapGraph implements GraphInterface {
             return min_index;
         }
 
-        // A utility function to print the constructed distance array
-        void printSolution(int dist[], int n) {
-            System.out.println("Vertex   Distance from Source");
-            for (int i = 0; i < V; i++)
-                System.out.println(i + " \t\t " + dist[i]);
-        }
 
-        // Function that implements Dijkstra's single source shortest path
-        // algorithm for a graph represented using adjacency matrix
-        // representation
+
         void dijkstra(int graph[][], CityNode sourceCity , CityNode destinationCity) {
             int dist[] = new int[V]; // The output array. dist[i] will hold
             // the shortest distance from src to i
 
-            // sptSet[i] will true if vertex i is included in shortest
-            // path tree or shortest distance from src to i is finalized
+            // sptSet[i]= true if vertex i is included in shortest path tree
             Boolean sptSet[] = new Boolean[V];
             int[] parentArray = new int[V ];
 
@@ -309,27 +300,23 @@ public class MapGraph implements GraphInterface {
 
             }
 
-            // Distance of source vertex from itself is always 0
+            // Distance of source vertex from itself
             dist[sourceCity.getLabel() -1] = 0;
             parentArray[sourceCity.getLabel() -1] = -1;
 
             // Find shortest path for all vertices
             for (int count = 0; count < V - 1; count++) {
-                // Pick the minimum distance vertex from the set of vertices
-                // not yet processed. u is always equal to src in first
-                // iteration.
+                // minimum distance vertex from set
                 int u = minDistance(dist, sptSet);
 
-                // Mark the picked vertex as processed
+                //u = processed
                 sptSet[u] = true;
 
                 // Update dist value of the adjacent vertices of the
                 // picked vertex.
                 for (int v = 0; v < V; v++)
 
-                    // Update dist[v] only if is not in sptSet, there is an
-                    // edge from u to v, and total weight of path from src to
-                    // v through u is smaller than current value of dist[v]
+                    //Relax:
                     if (!sptSet[v] && graph[u][v] != 0 &&
                             dist[u] != Integer.MAX_VALUE &&
                             dist[u] + graph[u][v] < dist[v]) {
