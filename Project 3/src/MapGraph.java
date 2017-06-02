@@ -342,7 +342,7 @@ public class MapGraph implements GraphInterface {
 
              System.out.println("The minimum distance between " + sourceCity.getName() + " and " + destinationCity.getName() +
              " is " + dist[destinationCity.getLabel() -1 ] + " through the route: " );
-             System.out.print(sourceCity.getCityCode());
+             System.out.print(sourceCity.getCityCode() + " ");
             printPath(parentArray, destinationCity.getLabel()-1);
         }
 
